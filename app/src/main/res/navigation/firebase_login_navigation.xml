@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/firebase_login_navigation"
+    app:startDestination="@id/firebaseLoginFragment">
+
+    <fragment
+        android:id="@+id/firebaseLoginFragment"
+        android:name="com.example.dihiltlibrary.ui.login.FirebaseLoginFragment"
+        android:label="fragment_firebase_login"
+        tools:layout="@layout/fragment_firebase_login" />
+    <fragment
+        android:id="@+id/setUserInfoFragment"
+        android:name="com.example.dihiltlibrary.ui.login.SetUserInfoFragment"
+        android:label="fragment_set_user_info"
+        tools:layout="@layout/fragment_set_user_info" />
+</navigation>
