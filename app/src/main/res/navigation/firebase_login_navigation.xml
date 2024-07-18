@@ -9,7 +9,11 @@
         android:id="@+id/firebaseLoginFragment"
         android:name="com.example.dihiltlibrary.ui.login.FirebaseLoginFragment"
         android:label="fragment_firebase_login"
-        tools:layout="@layout/fragment_firebase_login" />
+        tools:layout="@layout/fragment_firebase_login" >
+        <action
+            android:id="@+id/action_firebaseLoginFragment_to_setUserInfoFragment"
+            app:destination="@id/setUserInfoFragment" />
+    </fragment>
     <fragment
         android:id="@+id/setUserInfoFragment"
         android:name="com.example.dihiltlibrary.ui.login.SetUserInfoFragment"

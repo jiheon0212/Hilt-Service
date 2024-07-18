@@ -44,8 +44,11 @@ android {
 
 dependencies {
     // Hilt
-    implementation("com.google.dagger:hilt-android:2.44")
-    kapt("com.google.dagger:hilt-compiler:2.44")
+    implementation("com.google.dagger:hilt-android:2.51.1")
+    kapt("com.google.dagger:hilt-compiler:2.51.1")
+    // For Hilt Android Testing
+    androidTestImplementation ("com.google.dagger:hilt-android-testing:2.51.1")
+    kaptAndroidTest ("com.google.dagger:hilt-compiler:2.51.1")
 
     // Lifecycle components
     implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.8.3")
@@ -61,6 +64,9 @@ dependencies {
 
     // Firebase Realtime DB
     implementation("com.google.firebase:firebase-database-ktx")
+
+    // Firebase FireStore
+    implementation("com.google.firebase:firebase-firestore")
 
     // Jetpack Navigation
     val nav_version = "2.7.7"
