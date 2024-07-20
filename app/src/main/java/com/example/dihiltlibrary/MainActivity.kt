@@ -31,7 +31,7 @@ class MainActivity : AppCompatActivity() {
         navControllerMain.addOnDestinationChangedListener { _, destination, _ ->
             if (checkControllerView()) {
                 when (destination.id) {
-                    R.id.postFragment, R.id.chatRoomFragment, R.id.settingsFragment, R.id.boardFragment -> {
+                    R.id.postFragment, R.id.chatRoomFragment, R.id.settingsFragment, R.id.boardFragment, R.id.tradeFragment -> {
                         binding.bottomNavigationView.visibility = View.VISIBLE
                     }
                     else -> {

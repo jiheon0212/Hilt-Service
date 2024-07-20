@@ -50,5 +50,10 @@
         android:name="com.example.dihiltlibrary.ui.service.BoardFragment"
         android:label="fragment_board"
         tools:layout="@layout/fragment_board" />
+    <fragment
+        android:id="@+id/tradeFragment"
+        android:name="com.example.dihiltlibrary.ui.service.TradeFragment"
+        android:label="fragment_trade"
+        tools:layout="@layout/fragment_trade" />
 
 </navigation>
