@@ -41,7 +41,10 @@ class FirebaseLoginFragment : Fragment() {
 
             // user uid가 firestore document에 존재한다면 -> main flow 진입 / 존재하지 않는다면 -> setUserInfo fragment 진입
             viewModel.userBasicInfo.observe(viewLifecycleOwner) { userBasicInfo ->
-                if (userBasicInfo != null) NavigateSet.navigateToService(activity) else {
+                if (userBasicInfo != null) {
+                    NavigateSet.navigateToService(activity)
+                    viewModel.setUserStatus(true)
+                } else {
                     val action = FirebaseLoginFragmentDirections.actionFirebaseLoginFragmentToSetUserInfoFragment()
                     findNavController().navigate(action)
                 }

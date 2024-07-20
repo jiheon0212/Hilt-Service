@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.dihiltlibrary.AuthManager
 import com.example.dihiltlibrary.data.UserBasicInfo
 import com.example.dihiltlibrary.repository.FirebaseRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -14,9 +15,9 @@ import javax.inject.Inject
 
 @HiltViewModel
 class FirebaseLoginViewModel @Inject constructor(
-    private val firebaseRepository: FirebaseRepository
+    private val firebaseRepository: FirebaseRepository,
+    private val authManager: AuthManager
 ): ViewModel() {
-
     private val _userUploadStatus = MutableLiveData<Boolean>()
     val userUploadStatus: LiveData<Boolean> get() = _userUploadStatus
 
@@ -51,5 +52,9 @@ class FirebaseLoginViewModel @Inject constructor(
                 _userUid.value = user
             }
         }
+    }
+
+    fun setUserStatus(isOnline: Boolean) {
+        firebaseRepository.setUserStatus(isOnline)
     }
 }

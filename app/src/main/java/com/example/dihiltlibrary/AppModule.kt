@@ -1,7 +1,9 @@
 package com.example.dihiltlibrary
 
-import com.example.dihiltlibrary.repository.BoardRepository
-import com.example.dihiltlibrary.repository.BoardRepositoryImpl
+import com.example.dihiltlibrary.repository.ChatRepository
+import com.example.dihiltlibrary.repository.ChatRepositoryImpl
+import com.example.dihiltlibrary.repository.PostRepository
+import com.example.dihiltlibrary.repository.PostRepositoryImpl
 import com.example.dihiltlibrary.repository.FirebaseRepository
 import com.example.dihiltlibrary.repository.FirebaseRepositoryImpl
 import com.google.firebase.auth.FirebaseAuth
@@ -20,15 +22,23 @@ object AppModule {
     @Provides
     fun provideFirebaseFireStore(): FirebaseFirestore = FirebaseFirestore.getInstance()
     @Provides
-    fun provideFirebaseRepository(
-        firebaseAuth: FirebaseAuth,
-        firestore: FirebaseFirestore
-    ): FirebaseRepository = FirebaseRepositoryImpl(firebaseAuth, firestore)
+    fun provideFirebaseDatabase(): FirebaseDatabase = FirebaseDatabase.getInstance()
 
     @Provides
-    fun provideFirebaseDatabase(): FirebaseDatabase = FirebaseDatabase.getInstance()
-    @Provides
-    fun provideBoardRepository(
+    fun provideFirebaseRepository(
+        firebaseAuth: FirebaseAuth,
+        firestore: FirebaseFirestore,
         firebaseDatabase: FirebaseDatabase
-    ): BoardRepository = BoardRepositoryImpl(firebaseDatabase)
+    ): FirebaseRepository = FirebaseRepositoryImpl(firebaseAuth, firestore, firebaseDatabase)
+
+    @Provides
+    fun providePostRepository(
+        firebaseDatabase: FirebaseDatabase,
+        firestore: FirebaseFirestore
+    ): PostRepository = PostRepositoryImpl(firebaseDatabase, firestore)
+
+    @Provides
+    fun provideChatRepository(
+        firebaseDatabase: FirebaseDatabase
+    ): ChatRepository = ChatRepositoryImpl(firebaseDatabase)
 }

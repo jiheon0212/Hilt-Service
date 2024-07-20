@@ -19,7 +19,7 @@ object NavigateSet {
         activity?.findViewById<BottomNavigationView>(R.id.bottom_navigation_view)?.visibility = View.VISIBLE
 
         val navController = (activity?.supportFragmentManager?.findFragmentById(R.id.service_container) as NavHostFragment).navController
-        navController.navigate(R.id.homeFragment)
+        navController.navigate(R.id.postFragment)
     }
 
     fun popBackAndReturn(navController: NavController) {

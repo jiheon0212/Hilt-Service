@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.dihiltlibrary.data.Post
 import com.example.dihiltlibrary.databinding.PostAdapterBinding
 
-class HomePostAdapter(private var postList: MutableList<Post>): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class PostAdapter(private var postList: MutableList<Post>): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     inner class PostViewHolder(val binding: PostAdapterBinding): RecyclerView.ViewHolder(binding.root)
     @SuppressLint("NotifyDataSetChanged")
     fun fetchPost(newList: MutableList<Post>) {

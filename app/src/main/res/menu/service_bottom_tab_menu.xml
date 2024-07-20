@@ -3,10 +3,20 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
-        android:title="Home"
-        android:id="@+id/homeFragment"
+        android:title="Post"
+        android:id="@+id/postFragment"
         app:showAsAction="always"
         android:icon="@drawable/home_24px"/>
+    <item
+        android:title="Board"
+        android:id="@+id/boardFragment"
+        app:showAsAction="always"
+        android:icon="@drawable/board_24px"/>
+    <item
+        android:title="Chat"
+        android:id="@+id/chatRoomFragment"
+        app:showAsAction="always"
+        android:icon="@drawable/chat_24px"/>
     <item
         android:title="Settings"
         android:id="@+id/settingsFragment"

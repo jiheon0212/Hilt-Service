@@ -27,7 +27,10 @@ class SetUserInfoFragment : Fragment() {
     ): View {
         binding = FragmentSetUserInfoBinding.inflate(layoutInflater, container, false)
         viewModel.userUploadStatus.observe(viewLifecycleOwner) { status ->
-            if (status) NavigateSet.navigateToService(activity) else return@observe
+            if (status) {
+                NavigateSet.navigateToService(activity)
+                viewModel.setUserStatus(true)
+            } else return@observe
         }
         return binding.root
     }
