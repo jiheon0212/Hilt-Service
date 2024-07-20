@@ -34,9 +34,11 @@ class FirebaseLoginViewModel @Inject constructor(
     }
 
     fun getUserBasicInfo(uid: String) {
-        val getResult = firebaseRepository.getUserBasicInfo(uid)
-        getResult.observeForever { userBasicInfo ->
-            _userBasicInfo.value = userBasicInfo
+        viewModelScope.launch {
+            val userBasicInfo = firebaseRepository.getUserBasicInfo(uid)
+            withContext(Dispatchers.Main) {
+                _userBasicInfo.value = userBasicInfo
+            }
         }
     }
 

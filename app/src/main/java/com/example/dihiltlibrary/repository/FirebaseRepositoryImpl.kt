@@ -14,25 +14,18 @@ class FirebaseRepositoryImpl @Inject constructor(
 ): FirebaseRepository {
     override fun uploadUserBasicInfo(user: UserBasicInfo): LiveData<Boolean> {
         val result = MutableLiveData<Boolean>()
-        firestore.collection("users").document(user.id).set(user)
+        firestore.collection("users").document(firebaseAuth.uid!!).set(user)
             .addOnCompleteListener { task ->
                 result.value = task.isSuccessful
             }
 
         return result
     }
-    override fun getUserBasicInfo(uid: String): LiveData<UserBasicInfo?> {
-        val result = MutableLiveData<UserBasicInfo?>()
-        firestore.collection("users").document(uid).get()
-            .addOnCompleteListener { task ->
-                if (task.isSuccessful) {
-                    result.value = task.result.toObject(UserBasicInfo::class.java)
-                } else {
-                    result.value = null
-                }
-            }
+    override suspend fun getUserBasicInfo(uid: String): UserBasicInfo? {
+        val snapshot = firestore.collection("users").document(uid).get().await()
+        val userBasicInfo = snapshot.toObject(UserBasicInfo::class.java)
 
-        return result
+        return userBasicInfo
     }
     override suspend fun loginAnonymously(): LiveData<String> {
         val result = MutableLiveData<String>()

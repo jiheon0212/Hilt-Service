@@ -11,6 +11,7 @@ import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
 import com.example.dihiltlibrary.R
 import com.example.dihiltlibrary.databinding.FragmentFirebaseLoginBinding
+import com.example.dihiltlibrary.navigation.NavigateSet
 import com.example.dihiltlibrary.viewmodel.FirebaseLoginViewModel
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import dagger.hilt.android.AndroidEntryPoint
@@ -29,13 +30,6 @@ class FirebaseLoginFragment : Fragment() {
         viewModel.userUid.observe(viewLifecycleOwner) { userUid ->
             viewModel.getUserBasicInfo(userUid)
         }
-        // user uid가 firestore document에 존재한다면 -> main flow 진입 / 존재하지 않는다면 -> setUserInfo fragment 진입
-        viewModel.userBasicInfo.observe(viewLifecycleOwner) { userBasicInfo ->
-            if (userBasicInfo != null) navigateService() else {
-                val action = FirebaseLoginFragmentDirections.actionFirebaseLoginFragmentToSetUserInfoFragment()
-                findNavController().navigate(action)
-            }
-        }
 
         return binding.root
     }
@@ -44,16 +38,14 @@ class FirebaseLoginFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         binding.loginFragBtnLogin.setOnClickListener {
             viewModel.loginAnonymously()
+
+            // user uid가 firestore document에 존재한다면 -> main flow 진입 / 존재하지 않는다면 -> setUserInfo fragment 진입
+            viewModel.userBasicInfo.observe(viewLifecycleOwner) { userBasicInfo ->
+                if (userBasicInfo != null) NavigateSet.navigateToService(activity) else {
+                    val action = FirebaseLoginFragmentDirections.actionFirebaseLoginFragmentToSetUserInfoFragment()
+                    findNavController().navigate(action)
+                }
+            }
         }
-    }
-
-    private fun navigateService() {
-        activity?.findViewById<FragmentContainerView>(R.id.login_container)?.visibility = View.GONE
-
-        activity?.findViewById<FragmentContainerView>(R.id.service_container)?.visibility = View.VISIBLE
-        activity?.findViewById<BottomNavigationView>(R.id.bottom_navigation_view)?.visibility = View.VISIBLE
-
-        val navController = (activity?.supportFragmentManager?.findFragmentById(R.id.service_container) as NavHostFragment).navController
-        navController.navigate(R.id.homeFragment)
     }
 }
