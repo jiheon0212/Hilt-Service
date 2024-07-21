@@ -1,5 +1,7 @@
 package com.example.dihiltlibrary
 
+import com.example.dihiltlibrary.repository.BoardRepository
+import com.example.dihiltlibrary.repository.BoardRepositoryImpl
 import com.example.dihiltlibrary.repository.ChatRepository
 import com.example.dihiltlibrary.repository.ChatRepositoryImpl
 import com.example.dihiltlibrary.repository.PostRepository
@@ -41,4 +43,9 @@ object AppModule {
     fun provideChatRepository(
         firebaseDatabase: FirebaseDatabase
     ): ChatRepository = ChatRepositoryImpl(firebaseDatabase)
+
+    @Provides
+    fun provideBoardRepository(
+        firestore: FirebaseFirestore
+    ): BoardRepository = BoardRepositoryImpl(firestore)
 }

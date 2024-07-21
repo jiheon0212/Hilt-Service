@@ -49,11 +49,34 @@
         android:id="@+id/boardFragment"
         android:name="com.example.dihiltlibrary.ui.service.BoardFragment"
         android:label="fragment_board"
-        tools:layout="@layout/fragment_board" />
+        tools:layout="@layout/fragment_board" >
+        <action
+            android:id="@+id/action_boardFragment_to_boardWriteFragment"
+            app:destination="@id/boardWriteFragment" />
+        <action
+            android:id="@+id/action_boardFragment_to_boardResultFragment"
+            app:destination="@id/boardResultFragment" />
+    </fragment>
     <fragment
         android:id="@+id/tradeFragment"
         android:name="com.example.dihiltlibrary.ui.service.TradeFragment"
         android:label="fragment_trade"
         tools:layout="@layout/fragment_trade" />
+    <fragment
+        android:id="@+id/boardWriteFragment"
+        android:name="com.example.dihiltlibrary.ui.service.board.BoardWriteFragment"
+        android:label="fragment_board_write"
+        tools:layout="@layout/fragment_board_write">
+    </fragment>
+
+    <fragment
+        android:id="@+id/boardResultFragment"
+        android:name="com.example.dihiltlibrary.ui.service.board.BoardResultFragment"
+        android:label="fragment_board_result"
+        tools:layout="@layout/fragment_board_result">
+        <argument
+            android:name="title"
+            app:argType="string" />
+    </fragment>
 
 </navigation>

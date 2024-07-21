@@ -7,8 +7,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <SearchView
-        android:id="@+id/notice_search"
+    <androidx.appcompat.widget.SearchView
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
@@ -39,10 +38,15 @@
     </com.google.android.material.tabs.TabLayout>
 
     <FrameLayout
-        android:padding="8dp"
         android:id="@+id/notice_container"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-    </FrameLayout>
+        android:layout_height="0dp"
+        android:layout_weight="1"/>
+
+    <Button
+        android:id="@+id/board_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Write Content" />
 
 </LinearLayout>
