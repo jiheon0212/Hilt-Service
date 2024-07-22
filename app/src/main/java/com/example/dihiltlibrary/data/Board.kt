@@ -1,7 +1,9 @@
 package com.example.dihiltlibrary.data
 
+import android.os.Build
 import android.os.Parcel
 import android.os.Parcelable
+import androidx.annotation.RequiresApi
 
 data class Board(
     val id: String? = null,
@@ -14,7 +16,8 @@ data class Board(
         parcel.readString(),
         parcel.readString(),
         parcel.readString() ?: "",
-        parcel.readParcelable(BoardContent::class.java.classLoader),
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) parcel.readParcelable(BoardContent::class.java.classLoader, BoardContent::class.java)
+        else parcel.readParcelable(BoardContent::class.java.classLoader),
         parcel.readString() ?: ""
     )
 
