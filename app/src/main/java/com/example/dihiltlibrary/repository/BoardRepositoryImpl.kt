@@ -1,11 +1,8 @@
 package com.example.dihiltlibrary.repository
 
-import android.util.Log
-import com.example.dihiltlibrary.GetTime.getCurrentDay
-import com.example.dihiltlibrary.GetTime.getCurrentTime
 import com.example.dihiltlibrary.data.Board
-import com.google.firebase.firestore.DocumentChange
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.Query
 import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.callbackFlow
@@ -21,8 +18,9 @@ class BoardRepositoryImpl @Inject constructor(
             }
     }
 
-    override fun updateBoard(): Flow<MutableList<Board>> = callbackFlow {
-        val listenerRegistration = firestore.collection("board").document("Parenting").collection("Contents")
+    override fun updateBoard(category: String): Flow<MutableList<Board>> = callbackFlow {
+        val listenerRegistration = firestore.collection("board").document(category).collection("Contents")
+            .orderBy("timestamp", Query.Direction.DESCENDING)
             .addSnapshotListener { snapshots, error ->
                 if (error != null) {
                     close(error)

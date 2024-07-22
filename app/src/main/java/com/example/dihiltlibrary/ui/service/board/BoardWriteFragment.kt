@@ -9,6 +9,7 @@ import android.widget.RadioButton
 import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import com.example.dihiltlibrary.GetTime.getCurrentDay
 import com.example.dihiltlibrary.GetTime.getCurrentTime
 import com.example.dihiltlibrary.R
 import com.example.dihiltlibrary.data.Board
@@ -48,7 +49,7 @@ class BoardWriteFragment : Fragment() {
                     id = viewModel.currentUserId,
                     title = title,
                     category = selectedCategory,
-                    timestamp = getCurrentTime())
+                    timestamp = "${getCurrentDay()} ${getCurrentTime()}")
                 )
             }
         }

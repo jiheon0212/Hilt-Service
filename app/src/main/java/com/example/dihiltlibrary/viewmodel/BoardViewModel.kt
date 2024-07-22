@@ -23,18 +23,15 @@ class BoardViewModel @Inject constructor(
 
     private val _boardList = MutableLiveData<MutableList<Board>>()
     val boardList: LiveData<MutableList<Board>> = _boardList
-    init {
-        updateBoard()
-    }
 
     fun writeBoard(board: Board) {
         boardRepository.writeBoard(board) { status ->
             _uploadStatus.value = status
         }
     }
-    private fun updateBoard() {
+    fun updateBoard(category: String) {
         viewModelScope.launch {
-            boardRepository.updateBoard().collect { list ->
+            boardRepository.updateBoard(category).collect { list ->
                 _boardList.value = list
             }
         }

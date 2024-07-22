@@ -7,13 +7,13 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.dihiltlibrary.data.Board
 import com.example.dihiltlibrary.databinding.BoardTitleHolderBinding
 
-class BoardAdapter(private var boardTitleList: MutableList<Board>, private val onItemClick: (String) -> Unit): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class BoardAdapter(private var boardTitleList: MutableList<Board>, private val onItemClick: (Board) -> Unit): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     inner class BoardViewHolder(val binding: BoardTitleHolderBinding): RecyclerView.ViewHolder(binding.root) {
         init {
             binding.root.setOnClickListener {
                 if (adapterPosition != RecyclerView.NO_POSITION) {
-                    val boardTitle = boardTitleList[adapterPosition].title
-                    onItemClick(boardTitle)
+                    val board = boardTitleList[adapterPosition]
+                    onItemClick(board)
                 }
             }
         }
@@ -30,7 +30,11 @@ class BoardAdapter(private var boardTitleList: MutableList<Board>, private val o
     }
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         val boardTitle = boardTitleList[position].title
-        (holder as BoardViewHolder).binding.boardTitleTv.text = boardTitle
+        val boardWriter = boardTitleList[position].id
+        (holder as BoardViewHolder).binding.apply {
+            boardTitleTv.text = boardTitle
+            boardWriterTv.text = boardWriter
+        }
     }
     override fun getItemCount(): Int = boardTitleList.size
 }

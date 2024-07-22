@@ -75,8 +75,8 @@
         android:label="fragment_board_result"
         tools:layout="@layout/fragment_board_result">
         <argument
-            android:name="title"
-            app:argType="string" />
+            android:name="board"
+            app:argType="com.example.dihiltlibrary.data.Board" />
     </fragment>
 
 </navigation>

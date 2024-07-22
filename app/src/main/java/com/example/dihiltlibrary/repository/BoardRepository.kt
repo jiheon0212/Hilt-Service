@@ -8,6 +8,6 @@ interface BoardRepository {
     // board를 firestore를 통해 업로드하는 메서드
     // board를 firestore를 통해 addSnapshotListener로 실시간 업데이트 하는 메서드
     fun writeBoard(board: Board, callback: (Boolean) -> Unit)
-    fun updateBoard(): Flow<MutableList<Board>>
+    fun updateBoard(category: String): Flow<MutableList<Board>>
     fun getBoard()
 }

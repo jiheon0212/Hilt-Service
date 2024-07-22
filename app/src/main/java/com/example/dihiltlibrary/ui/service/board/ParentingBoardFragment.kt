@@ -25,8 +25,10 @@ class ParentingBoardFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentParentingBoardBinding.inflate(layoutInflater, container, false)
-        boardAdapter = BoardAdapter(mutableListOf()) { title ->
-            val action = BoardFragmentDirections.actionBoardFragmentToBoardResultFragment(title)
+        viewModel.updateBoard("Parenting")
+
+        boardAdapter = BoardAdapter(mutableListOf()) { board ->
+            val action = BoardFragmentDirections.actionBoardFragmentToBoardResultFragment(board)
             findNavController().navigate(action)
         }
         binding.parentingRecycler.apply {
