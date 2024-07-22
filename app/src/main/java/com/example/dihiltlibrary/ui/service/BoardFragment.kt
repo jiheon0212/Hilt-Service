@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.widget.SearchView.OnQueryTextListener
 import androidx.navigation.fragment.findNavController
 import com.example.dihiltlibrary.R
 import com.example.dihiltlibrary.adapter.BoardAdapter
@@ -18,19 +19,15 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class BoardFragment : Fragment() {
     private lateinit var binding: FragmentBoardBinding
-    private lateinit var boardAdapter: BoardAdapter
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentBoardBinding.inflate(layoutInflater, container, false)
-        boardAdapter = BoardAdapter(mutableListOf()) { title ->
-            val action = BoardFragmentDirections.actionBoardFragmentToBoardResultFragment(title)
-            findNavController().navigate(action)
-        }
-        replaceFragment(ParentingBoardFragment())
 
+        replaceFragment(ParentingBoardFragment())
         binding.noticeTabs.addOnTabSelectedListener(object: TabLayout.OnTabSelectedListener {
             override fun onTabSelected(p0: TabLayout.Tab?) {
                 p0?.let {
@@ -48,8 +45,8 @@ class BoardFragment : Fragment() {
         return binding.root
     }
 
-    override fun onViewStateRestored(savedInstanceState: Bundle?) {
-        super.onViewStateRestored(savedInstanceState)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         binding.boardBtn.setOnClickListener {
             val action = BoardFragmentDirections.actionBoardFragmentToBoardWriteFragment()
             findNavController().navigate(action)

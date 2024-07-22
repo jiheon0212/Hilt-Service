@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     tools:context=".ui.service.PostFragment" >
 
-    <SearchView
+    <androidx.appcompat.widget.SearchView
         android:id="@+id/post_search_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />

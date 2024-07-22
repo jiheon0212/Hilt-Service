@@ -19,6 +19,33 @@
 
     </com.google.android.material.textfield.TextInputLayout>
 
+    <RadioGroup
+        android:id="@+id/board_write_radio_group"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+        <RadioButton
+            android:id="@+id/parenting"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Parenting" />
+
+        <RadioButton
+            android:id="@+id/free"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Free" />
+
+        <RadioButton
+            android:id="@+id/meeting"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Meeting" />
+    </RadioGroup>
+
     <Space
         android:layout_width="match_parent"
         android:layout_height="0dp"

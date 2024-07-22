@@ -19,13 +19,13 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class AddPostFragment : Fragment() {
     private lateinit var binding: FragmentAddPostBinding
-    private val viewmodel: PostViewModel by viewModels()
+    private val viewModel: PostViewModel by viewModels()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentAddPostBinding.inflate(layoutInflater, container, false)
-        viewmodel.uploadStatus.observe(viewLifecycleOwner) { complete ->
+        viewModel.uploadStatus.observe(viewLifecycleOwner) { complete ->
             if (complete) popBackAndReturn(findNavController())
             else Toast.makeText(context, "post upload failed by error", Toast.LENGTH_SHORT).show()
         }
@@ -38,10 +38,10 @@ class AddPostFragment : Fragment() {
             val title = binding.addEditText.text.toString()
             val value = Post(
                 getCurrentTime(),
-                viewmodel.currentUserId,
+                viewModel.currentUserId,
                 postContent = Content(contentName = title)
             )
-            viewmodel.uploadPost(value)
+            viewModel.uploadPost(value)
         }
     }
 }
