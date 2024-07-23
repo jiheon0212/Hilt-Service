@@ -23,6 +23,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var navControllerMain: NavController
     private val viewModel: FirebaseLoginViewModel by viewModels()
 
+    // 권한 목록
     private val PERMISSIONS = arrayOf(
         android.Manifest.permission.ACCESS_FINE_LOCATION,
         android.Manifest.permission.ACCESS_COARSE_LOCATION,
@@ -35,6 +36,7 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        // 현재 가지고 있는 권한 확인
         if (!hasPermission()) {
             ActivityCompat.requestPermissions(this, PERMISSIONS, LOCATION_PERMISSION_REQUEST_CODE)
         }
@@ -66,6 +68,7 @@ class MainActivity : AppCompatActivity() {
             }
         })
     }
+    // 권한 확인 메서드
     private fun hasPermission(): Boolean {
         for (permission in PERMISSIONS) {
             if (ContextCompat.checkSelfPermission(this, permission)
