@@ -20,7 +20,6 @@ import dagger.hilt.android.AndroidEntryPoint
 class BoardFragment : Fragment() {
     private lateinit var binding: FragmentBoardBinding
 
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?

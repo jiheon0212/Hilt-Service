@@ -18,11 +18,6 @@
             app:destination="@id/messageFragment" />
     </fragment>
     <fragment
-        android:id="@+id/settingsFragment"
-        android:name="com.example.dihiltlibrary.ui.service.SettingsFragment"
-        android:label="fragment_settings"
-        tools:layout="@layout/fragment_settings" />
-    <fragment
         android:id="@+id/addPostFragment"
         android:name="com.example.dihiltlibrary.ui.service.AddPostFragment"
         android:label="fragment_add_post"
@@ -78,5 +73,10 @@
             android:name="board"
             app:argType="com.example.dihiltlibrary.data.Board" />
     </fragment>
+    <fragment
+        android:id="@+id/groupFragment"
+        android:name="com.example.dihiltlibrary.ui.service.GroupFragment"
+        android:label="fragment_group"
+        tools:layout="@layout/fragment_group" />
 
 </navigation>

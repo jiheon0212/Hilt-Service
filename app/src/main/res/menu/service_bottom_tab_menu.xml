@@ -23,9 +23,9 @@
         app:showAsAction="always"
         android:icon="@drawable/shop_24px"/>
     <item
-        android:title="Settings"
-        android:id="@+id/settingsFragment"
+        android:title="Group"
+        android:id="@+id/groupFragment"
         app:showAsAction="always"
-        android:icon="@drawable/settings_24px"/>
+        android:icon="@drawable/groups_24px"/>
 
 </menu>
